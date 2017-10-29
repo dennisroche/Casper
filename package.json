@@ -11,10 +11,11 @@
         "desktop": "assets/screenshot-desktop.jpg",
         "mobile": "assets/screenshot-mobile.jpg"
     },
-    "scripts": {
-        "dev": "gulp",
-        "zip": "gulp zip",
-        "test": "gscan ."
+        "scripts": {
+        "start": "gulp",
+        "build": "gulp build",
+        "publish": "gulp zip",
+        "prepublish": "gscan ."
     },
     "author": {
         "name": "Ghost Foundation",
@@ -44,7 +45,6 @@
     "devDependencies": {
         "autoprefixer": "6.3.6",
         "cssnano": "3.7.1",
-        "gscan": "^2.0.0",
         "gulp": "3.9.1",
         "gulp-livereload": "3.8.1",
         "gulp-postcss": "6.1.1",
