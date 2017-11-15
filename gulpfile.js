@@ -22,17 +22,17 @@ var swallowError = function swallowError(error) {
     this.emit('end');
 };
 
-var nodemonServerInit = function () {
+var nodemonServerInit = () => {
     livereload.listen(1234);
 };
 
-gulp.task('build', ['css', 'js'], function (/* cb */) {
+gulp.task('build', ['css', 'js'], () => {
     return nodemonServerInit();
 });
 
 gulp.task('generate', ['css', 'js']);
 
-gulp.task('css', function () {
+gulp.task('css', () => {
     var processors = [
         easyimport,
         customProperties,
@@ -64,11 +64,12 @@ gulp.task('js', function () {
         .pipe(livereload());
 });
 
-gulp.task('watch', function () {
+gulp.task('watch', () => {
     gulp.watch('assets/css/**', ['css']);
+    gulp.watch('assets/js/**', ['js']);
 });
 
-gulp.task('zip', ['css', 'js'], function () {
+gulp.task('zip', ['css'], function () {
     var targetDir = 'dist/';
     var themeName = require('./package.json').name;
     var filename = themeName + '.zip';
@@ -78,10 +79,10 @@ gulp.task('zip', ['css', 'js'], function () {
         '!node_modules', '!node_modules/**',
         '!dist', '!dist/**'
     ])
-        .pipe(zip(filename))
-        .pipe(gulp.dest(targetDir));
+    .pipe(zip(filename))
+    .pipe(gulp.dest(targetDir));
 });
 
-gulp.task('default', ['build'], function () {
+gulp.task('default', ['build'], () => {
     gulp.start('watch');
 });
