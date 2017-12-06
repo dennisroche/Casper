@@ -69,7 +69,7 @@ gulp.task('watch', () => {
     gulp.watch('assets/js/**', ['js']);
 });
 
-gulp.task('zip', ['css'], function () {
+gulp.task('zip', ['generate'], () => {
     var targetDir = 'dist/';
     var themeName = require('./package.json').name;
     var filename = themeName + '.zip';
